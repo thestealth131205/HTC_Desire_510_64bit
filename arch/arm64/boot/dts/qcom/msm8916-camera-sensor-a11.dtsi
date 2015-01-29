@@ -1,0 +1,184 @@
+/*
+ * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&soc {
+
+	led_flash0: qcom,camera-led-flash {
+		cell-index = <0>;
+		compatible = "qcom,camera-led-flash";
+		qcom,flash-type = <1>;
+	};
+};
+
+&cci {
+
+	/*actuator0: qcom,actuator@6e {
+		cell-index = <3>;
+		reg = <0x6c>;
+		compatible = "qcom,actuator";
+		qcom,cci-master = <0>;
+	};
+
+	actuator1: qcom,actuator@36 {
+		cell-index = <1>;
+		reg = <0x36>;
+		compatible = "qcom,actuator";
+		qcom,cci-master = <0>;
+	};
+*/
+
+	qcom,camera@0 {
+		cell-index = <0>;
+		compatible = "htc,s5k5e";
+		reg = <0x0>;
+		qcom,slave-id = <0x20 0x0000 0x5E20>;
+		qcom,csiphy-sd-index = <0>;
+		qcom,csid-sd-index = <0>;
+		qcom,mount-angle = <90>;
+		qcom,sensor-name = "s5k5e";
+		qcom,htc-image = <0>;
+		cam_vdig-supply = <&msm_gpio 34 0>;
+		cam_vana-supply = <&msm_gpio 52 0>;
+		cam_vio-supply = <&pm8916_l16>;
+		qcom,cam-vreg-name = "cam_vdig", "cam_vio", "cam_vana";
+		qcom,cam-vreg-type = <2 1 2>;
+		qcom,cam-vreg-min-voltage = <1200000 0 2850000>;
+		qcom,cam-vreg-max-voltage = <1200000 0 2850000>;
+		qcom,cam-vreg-op-mode = <0 0 0>;
+		qcom,cam-vreg-gpios-index = <2 99 3>;
+		qcom,gpio-no-mux = <0>;
+		pinctrl-names = "cam_default", "cam_suspend", "cam_release";
+		pinctrl-0 = <&cam_sensor_mclk0_default
+				&cam_sensor_rear_default>;
+		pinctrl-1 = <&cam_sensor_mclk0_sleep &cam_sensor_rear_sleep>;
+		pinctrl-2 = <&cam_sensor_mclk0_release &cam_sensor_rear_release>;
+		gpios = <&msm_gpio 26 0>,
+				<&msm_gpio 35 0>,
+				<&msm_gpio 34 0>,
+				<&msm_gpio 52 0>;
+		qcom,gpio-reset = <1>;
+		qcom,gpio-vana = <3>;
+		qcom,gpio-vdig = <2>;
+		qcom,gpio-req-tbl-num = <0 1 2 3>;
+		qcom,gpio-req-tbl-flags = <1 0 0 0>;
+		qcom,gpio-req-tbl-label = "MCLK_CPU",
+					              "CAM_RST",
+					              "V_CAM_D1V2_EN",
+					              "V_CAM_A2V85_EN";
+
+		qcom,csi-lane-assign = <0x4320>;
+		qcom,csi-lane-mask = <0x7>;
+		qcom,sensor-position = <0>;
+		qcom,sensor-mode = <0>;
+		qcom,cci-master = <0>;
+		status = "ok";
+		clocks = <&clock_gcc clk_mclk0_clk_src>,
+				<&clock_gcc clk_gcc_camss_mclk0_clk>;
+		clock-names = "cam_src_clk", "cam_clk";
+	};
+
+	qcom,camera@1 {
+		cell-index = <1>;
+		//compatible = "qcom,camera";
+		compatible = "htc,gc0339";
+		reg = <0x1>;
+		qcom,slave-id = <0x42 0x00 0xc8>;
+		qcom,csiphy-sd-index = <1>;
+		qcom,csid-sd-index = <1>;
+		qcom,mount-angle = <270>;
+		qcom,sensor-name = "gc0339";
+		qcom,htc-image = <0>;
+		cam_vdig-supply = <&pm8916_l16>;
+		cam_vana-supply = <&msm_gpio 52 0>;
+		cam_vio-supply = <&pm8916_l16>;
+		qcom,cam-vreg-name = "cam_vdig", "cam_vio", "cam_vana";
+		qcom,cam-vreg-type = <2 1 2>;
+		qcom,cam-vreg-min-voltage = <1800000 0 2850000>;
+		qcom,cam-vreg-max-voltage = <1800000 0 2850000>;
+		qcom,cam-vreg-op-mode = <0 0 0>;
+		qcom,cam-vreg-gpios-index = <99 99 2>;
+		qcom,gpio-no-mux = <0>;
+		pinctrl-names = "cam_default", "cam_suspend", "cam_release";
+		pinctrl-0 = <&cam_sensor_mclk1_default
+				&cam_sensor_front_default>;
+		pinctrl-1 = <&cam_sensor_mclk1_sleep &cam_sensor_front_sleep>;
+		pinctrl-2 = <&cam_sensor_mclk1_release &cam_sensor_front_release>;
+		gpios = <&msm_gpio 27 0>,
+				<&msm_gpio 28 0>,
+				<&msm_gpio 52 0>;
+		qcom,gpio-reset = <1>;
+		qcom,gpio-vana = <2>;
+		qcom,gpio-req-tbl-num = <0 1 2>;
+		qcom,gpio-req-tbl-flags = <1 0 0>;
+		qcom,gpio-req-tbl-label = "MCLK_CPU",
+						"CAM_RST",
+						"V_CAM_A2V85_EN";
+
+		qcom,csi-lane-assign = <0x4320>;
+		qcom,csi-lane-mask = <0x3>;
+		qcom,sensor-position = <1>;
+		qcom,sensor-mode = <1>;
+		qcom,cci-master = <0>;
+		status = "ok";
+		clocks = <&clock_gcc clk_mclk1_clk_src>,
+				<&clock_gcc clk_gcc_camss_mclk1_clk>;
+		clock-names = "cam_src_clk", "cam_clk";
+	};
+
+	qcom,camera@78 {
+		//cell-index = <2>;
+		compatible = "ovti,mt9v113";
+		reg = <0x78 0x0>;
+		qcom,slave-id = <0x78 0x00 0x2280>;
+		qcom,csiphy-sd-index = <1>;
+		qcom,csid-sd-index = <1>;
+		qcom,mount-angle = <270>;
+		qcom,sensor-name = "mt9v113";
+		qcom,htc-image = <0>;
+		cam_vdig-supply = <&pm8916_l16>;
+		cam_vana-supply = <&msm_gpio 52 0>;
+		cam_vio-supply = <&pm8916_l16>;
+		qcom,cam-vreg-name = "cam_vdig", "cam_vio", "cam_vana";
+		qcom,cam-vreg-type = <2 1 2>;
+		qcom,cam-vreg-min-voltage = <1800000 0 2850000>;
+		qcom,cam-vreg-max-voltage = <1800000 0 2850000>;
+		qcom,cam-vreg-op-mode = <0 0 0>;
+		qcom,cam-vreg-gpios-index = <99 99 2>;
+		qcom,gpio-no-mux = <0>;
+		pinctrl-names = "cam_default", "cam_suspend", "cam_release";
+		pinctrl-0 = <&cam_sensor_mclk1_default
+				&cam_sensor_front_default>;
+		pinctrl-1 = <&cam_sensor_mclk1_sleep &cam_sensor_front_sleep>;
+		pinctrl-2 = <&cam_sensor_mclk1_release &cam_sensor_front_release>;
+		gpios = <&msm_gpio 27 0>,
+				<&msm_gpio 28 0>,
+				<&msm_gpio 52 0>;
+		qcom,gpio-reset = <1>;
+		qcom,gpio-vana = <2>;
+		qcom,gpio-req-tbl-num = <0 1 2>;
+		qcom,gpio-req-tbl-flags = <1 0 0>;
+		qcom,gpio-req-tbl-label = "MCLK_CPU",
+						"CAM_RST",
+						"V_CAM_A2V85_EN";
+
+		qcom,csi-lane-assign = <0x4320>;
+		qcom,csi-lane-mask = <0x3>;
+		qcom,sensor-position = <1>;
+		qcom,sensor-mode = <1>;
+		qcom,cci-master = <0>;
+		status = "ok";
+		clocks = <&clock_gcc clk_mclk1_clk_src>,
+				<&clock_gcc clk_gcc_camss_mclk1_clk>;
+		clock-names = "cam_src_clk", "cam_clk";
+	};
+};
