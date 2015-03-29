@@ -67,4 +67,4 @@ extern void vib_trigger_event(struct vib_trigger *trigger, int value);
 
 #endif
 
-#endif		
+#endif

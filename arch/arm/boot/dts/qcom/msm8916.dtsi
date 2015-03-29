@@ -266,7 +266,7 @@
 
 	qcom,clock-a7@0b011050 {
 		compatible = "qcom,clock-a53-8916";
-		reg = <0x0b011050 0x8>;
+		reg = <0x0b011050 0x9>;
 		reg-names = "rcg-base";
 		qcom,safe-freq = < 400000000 >;
 		cpu-vdd-supply = <&apc_vreg_corner>;
@@ -282,7 +282,7 @@
 			<  998400000 5>,
 			< 1094400000 6>,
 			< 1190400000 7>,
-                        < 1478400000 7>;
+                        < 1478400000 8>;
 	};
 
 	qcom,cpubw {
@@ -305,7 +305,7 @@
 	};
 
 	qcom,msm-cpufreq@0 {
-		reg = <0 5>;
+		reg = <0 6>;
 		compatible = "qcom,msm-cpufreq";
 		qcom,cpufreq-table =
 			 <  200000  762>,
@@ -1279,8 +1279,8 @@ ZE */
 		qcom,bam-pipe-idx-cons = <12>;
 		qcom,bam-pipe-idx-prod = <13>;
 		qcom,master-id = <86>;
-		qcom,sda-gpio = <&msm_gpio 18 0>;
-		qcom,scl-gpio = <&msm_gpio 19 0>;
+		qcom,sda-gpio = <&msm_gpio 20 0>;
+		qcom,scl-gpio = <&msm_gpio 22 0>;
 	};
 
 	i2c_6: i2c@78ba000 { /* BLSP1 QUP6 */

@@ -22,16 +22,14 @@
 #include <linux/err.h>
 #include "../staging/android/timed_output.h"
 
-#include <linux/vibtrig.h>
-
 #define QPNP_VIB_VTG_CTL(base)		(base + 0x41)
 #define QPNP_VIB_EN_CTL(base)		(base + 0x46)
 
-#define QPNP_VIB_MAX_LEVEL		31
+#define QPNP_VIB_MAX_LEVEL		32
 #define QPNP_VIB_MIN_LEVEL		12
 
-#define QPNP_VIB_DEFAULT_TIMEOUT	15000
-#define QPNP_VIB_DEFAULT_VTG_LVL	3100
+#define QPNP_VIB_DEFAULT_TIMEOUT	11000
+#define QPNP_VIB_DEFAULT_VTG_LVL	3110
 
 #define QPNP_VIB_EN			BIT(7)
 #define QPNP_VIB_VTG_SET_MASK		0x1F
@@ -103,7 +101,6 @@ static int qpnp_vibrator_config(struct qpnp_vib *vib)
 	u8 reg = 0;
 	int rc;
 
-	
 	rc = qpnp_vib_read_u8(vib, &reg, QPNP_VIB_VTG_CTL(vib->base));
 	if (rc < 0)
 		return rc;
@@ -456,7 +453,7 @@ static int qpnp_vibrator_remove(struct spmi_device *spmi)
 	struct qpnp_vib *vib = dev_get_drvdata(&spmi->dev);
 
 #ifdef CONFIG_VIB_TRIGGERS
-		vib_trigger_enabler_unregister(&vib->enabler);
+	vib_trigger_enabler_unregister(&vib->enabler);
 #endif
 	cancel_work_sync(&vib->work);
 	hrtimer_cancel(&vib->vib_timer);

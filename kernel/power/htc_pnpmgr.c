@@ -18,7 +18,7 @@
 
 #include "power.h"
 
-#define MAX_BUF 100
+#define MAX_BUF 110
 
 struct kobject *cpufreq_kobj;
 static struct kobject *hotplug_kobj;
@@ -146,7 +146,7 @@ define_int_show(thermal_final_gpu, thermal_final_gpu_value);
 define_int_store(thermal_final_gpu, thermal_final_gpu_value, null_cb);
 power_attr(thermal_final_gpu);
 
-static unsigned int info_gpu_max_clk = 400000000;
+static unsigned int info_gpu_max_clk = 410000000;
 void set_gpu_clk(unsigned int value)
 {
         info_gpu_max_clk = value;

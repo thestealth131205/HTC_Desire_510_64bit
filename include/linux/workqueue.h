@@ -12,7 +12,6 @@
 #include <linux/threads.h>
 #include <linux/atomic.h>
 #include <linux/cpumask.h>
-
 struct workqueue_struct;
 
 struct work_struct;
